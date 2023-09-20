@@ -81,7 +81,7 @@ function Signup() {
 
   return (
     <div id="form-demo">
-      <h1>Hello World</h1>
+      <h1>Register form</h1>
       <div className="widget-container">
         <form
           onSubmit={handleFormSubmit}

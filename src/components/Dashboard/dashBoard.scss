@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.dashboard-container{
+    // background-color: beige;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    gap: 10px
+}
+
+.vote-section {
+    flex: 0.7;
+    overflow-y: scroll;
+    height: 90vh;
+}
+.welcome-section{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: 1px solid;
+    padding: 10px;
+    height: 108px;
+}
+
+.welcome-section small{
+    color: red;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.bttn{
+    background-color: #2c2cf0;
+    color: white;
+    font-size: 0.9rem;
+}

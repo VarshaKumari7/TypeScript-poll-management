@@ -1,9 +1,10 @@
 import { Button } from "devextreme-react";
 import Form from "devextreme-react/form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./signup.scss";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [InputData, setInputData] = useState<any>({
@@ -12,6 +13,7 @@ function Signup() {
   });
   console.log("InputData", InputData);
   const cookies = new Cookies();
+  const navigate = useNavigate();
 
   const loginHandler = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
@@ -34,30 +36,38 @@ function Signup() {
   };
 
   const isAuthenticated = !!cookies.get("accessToken");
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/signin");
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
     <div id="form-demo">
       <h1>Hello World</h1>
       <div className="widget-container">
-        {isAuthenticated ? (
+        {/* {isAuthenticated ? (
           <div>
             <p>You are logged in!</p>
           </div>
-        ) : (
-          <form onSubmit={loginHandler}>
-            <Form
-              id="form"
-              labelMode={"floating"}
-              formData={InputData}
-              readOnly={false}
-              showColonAfterLabel={true}
-              labelLocation={"left"}
-              minColWidth={300}
-              colCount={2}
-              width={500}
-            ></Form>
-            <Button useSubmitBehavior text="submit" />
-          </form>
-        )}
+        ) : ( */}
+        <form onSubmit={loginHandler}>
+          <Form
+            id="form"
+            labelMode={"floating"}
+            formData={InputData}
+            readOnly={false}
+            showColonAfterLabel={true}
+            labelLocation={"left"}
+            minColWidth={300}
+            colCount={2}
+            width={500}
+          ></Form>
+          <Button useSubmitBehavior text="submit" />
+        </form>
+        {/* )} */}
       </div>
       {/* <div>
         <a href="/signup">logout</a>

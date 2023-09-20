@@ -1,0 +1,41 @@
+// px 0px 5px 0px;
+//constant for scsss
+//border-vote-box
+// $border-vote-box
+
+.vote-box{
+    border:  1px solid black;
+    padding: 17px;
+
+    .vote-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .question-section {
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 5px 0;
+        }
+    
+        .login {
+            padding: 0px 0px 5px 0px;
+        }
+    
+        .login-section {
+            color: red;
+        }
+        .vote-options{
+            border: 1px solid black;
+            border-radius: 8px;
+            margin: 3px;
+            padding: 2px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+        .voted{
+            background-color: green;
+        }
+}
+

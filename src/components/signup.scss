@@ -27,3 +27,43 @@
 .option {
     margin-top: 10px;
 }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    // width: 500px;
+        border: 1px solid lightblue;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: rgb(76, 161, 236);
+}
+
+.content-box{
+    background-color: aliceblue;
+    max-width: 380px;
+    width: 100%;
+    padding: 25px;
+    border-radius: 15px;
+    
+}
+
+.row{
+    display: block;
+    margin-bottom: 5px;
+    padding : 8px 15px;
+    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+}
+
+.row-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
