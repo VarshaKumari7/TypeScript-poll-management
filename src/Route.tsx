@@ -4,6 +4,7 @@ import SignIn from "./components/Signin";
 import Poll from "./components/poll";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Createpoll from "./components/Createpoll/Createpoll";
 
 const Routepage = () => {
   return (
@@ -14,6 +15,7 @@ const Routepage = () => {
           <Route path="/" element={<SignIn />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="createpoll" element={<Createpoll />} />
           {/* <Route path="/user" element={<PrivateRoute />}> */}
           {/* <Route path="Poll" element={<Poll />} /> */}
           {/* </Route> */}

@@ -1,0 +1,30 @@
+.heading{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.text-area, .ques-area{
+    padding: 20px 0 0 0;
+}
+
+.text-box{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.text-area span,  .ques-area span{
+    font-size: 1.2rem;
+}
+.text-box input, .ques-area input{
+    border: 1px solid;
+}
+
+.bttn-div{
+    margin: 10px 0 10px;
+}
+
+.btn-cls{
+    background-color: #2c2cf0;
+    color: white;
+}
