@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import VoteList from "../Vote/Vote";
-import { Popup } from "devextreme-react/popup";
 
 const Dashboard = () => {
   const [pollData, setPollData] = useState<any>([]);
   const [error, setError] = useState("");
-  const [isPopupVisible, setPopupVisibility] = useState(true);
+  // const [isPopupVisible, setPopupVisibility] = useState(true);
 
   const togglePopup = () => {
     // setPopupVisibility(!isPopupVisible);

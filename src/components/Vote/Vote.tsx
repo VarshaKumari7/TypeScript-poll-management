@@ -3,6 +3,7 @@ import "./vote.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { useState } from "react";
+import { Button } from "devextreme-react";
 
 const VoteList = ({ voteData }: any) => {
   console.log(voteData, "voteData");
@@ -19,6 +20,24 @@ const VoteList = ({ voteData }: any) => {
 
 const Vote = ({ voteDetails }: any) => {
   console.log(voteDetails, "voteDetails");
+
+  const pollDeleteHandler = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/api/polls/delete/${voteDetails._id}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4MTgzOWMwZmExMDcwOTBmY2MzYzIiLCJ1c2VybmFtZSI6ImFiY2RlZiIsImlhdCI6MTY5NTEyMjI5OH0.mkJr7cnBir5yhyttNUUsJqO_e8ECuU9Rc-PMGNCTupg`,
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="vote-box">
       <div className="vote-details">
@@ -52,6 +71,11 @@ const Vote = ({ voteDetails }: any) => {
           );
         })}
       </div>
+      <Button
+        text="Delete poll"
+        onClick={pollDeleteHandler}
+        className="delete-btn"
+      />
     </div>
   );
 };

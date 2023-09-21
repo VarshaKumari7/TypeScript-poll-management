@@ -3,7 +3,7 @@ import Form from "devextreme-react/form";
 import { useState } from "react";
 import "./signup.scss";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [InputData, setInputData] = useState<any>({
@@ -12,7 +12,7 @@ function Signup() {
     password: "",
   });
   console.log("InputData", InputData);
-
+  const navigate = useNavigate();
   //   const [userName, setUserName] = useState<string>("");
 
   //   const userNameChangeHandler = (e: NativeEventInfo<any | Event>) => {
@@ -51,6 +51,8 @@ function Signup() {
     } catch (error) {
       console.error("Error", error);
     }
+    setInputData({});
+    navigate("/signin");
     console.log("ghjghjdb", InputData);
   };
 

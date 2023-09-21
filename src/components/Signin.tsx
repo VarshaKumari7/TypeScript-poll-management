@@ -69,9 +69,9 @@ function Signup() {
         </form>
         {/* )} */}
       </div>
-      {/* <div>
-        <a href="/signup">logout</a>
-      </div> */}
+      <div>
+        <a href="/signup">Don't have account? Signup </a>
+      </div>
     </div>
   );
 }

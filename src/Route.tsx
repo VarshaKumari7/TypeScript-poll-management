@@ -13,11 +13,11 @@ const Routepage = () => {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<SignIn />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="createpoll" element={<Createpoll />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/createpoll" element={<Createpoll />} />
           {/* <Route path="/user" element={<PrivateRoute />}> */}
           {/* <Route path="Poll" element={<Poll />} /> */}
           {/* </Route> */}
