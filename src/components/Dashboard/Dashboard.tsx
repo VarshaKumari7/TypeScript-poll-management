@@ -26,7 +26,7 @@ const Dashboard = () => {
       });
   }, []);
 
-  console.log("polldata", pollData, pollData);
+  console.log("userrrrrrr###", pollData);
 
   const onClickHandler = () => {
     // e.preventDefault();
@@ -52,7 +52,7 @@ const Dashboard = () => {
           hideOnOutsideClick={true}
           onHiding={togglePopup}
         /> */}
-        <Button text="Open popup" onClick={togglePopup} />
+        <Button text="Create Poll" onClick={togglePopup} className="poll" />
       </div>
     </div>
   );

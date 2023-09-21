@@ -5,11 +5,13 @@ import Poll from "./components/poll";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Createpoll from "./components/Createpoll/Createpoll";
+import Navbar from "./components/Navbar/Navbar";
 
 const Routepage = () => {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="signup" element={<Signup />} />
           <Route path="/" element={<SignIn />} />
