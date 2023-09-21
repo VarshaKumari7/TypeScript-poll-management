@@ -46,13 +46,8 @@ function Signup() {
 
   return (
     <div id="form-demo">
-      <h1>Hello World</h1>
+      <h1>Login page</h1>
       <div className="widget-container">
-        {/* {isAuthenticated ? (
-          <div>
-            <p>You are logged in!</p>
-          </div>
-        ) : ( */}
         <form onSubmit={loginHandler}>
           <Form
             id="form"
