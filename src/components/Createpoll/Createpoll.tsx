@@ -6,43 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-// const renderContent = () => {
-//   const [value, setValue] = useState<any>({
-//     question: "",
-//     options: [],
-//   });
-//   const onValueChange = (e: any) => {
-//     console.log(e.value);
-//   };
-
-//   const submitPollHandle = ()=>{
-//     axios.post("http://localhost:8000/api/polls/create", value);
-//   }
-
-//   return (
-//     <>
-//       <div className="heading">Create Poll</div>
-//       <div className="ques-area">
-//         <span>Enter Question</span>
-//         <TextBox value={value.question} onValueChange={onValueChange} />
-//       </div>
-//       <div className="text-area">
-//         <span>Enter options</span>
-//         <div className="text-box">
-//           <TextBox value={value.options[0]} onValueChange={onValueChange} />
-//           <TextBox value={value.options[1]} onValueChange={onValueChange} />
-//           <TextBox value={value.options[2]} onValueChange={onValueChange} />
-//           <TextBox value={value.options[3]} onValueChange={onValueChange} />
-//           <TextBox value={value.options[4]} onValueChange={onValueChange} />
-//         </div>
-//       </div>
-//       <div className="bttn-div">
-//         <Button text="Create poll" className="btn-cls" />
-//       </div>
-//     </>
-//   );
-// };
-
 const Createpoll = () => {
   interface PollValues {
     question: string;
@@ -53,44 +16,44 @@ const Createpoll = () => {
     options: ["", "", "", "", ""],
   });
 
-  //   const onValueChange = (e: any, key: string) => {
-  //     const updatedValues = { ...values };
-  //     (updatedValues as any)[key] = e.value;
+  const onValueChanged = (e: any) => {
+    const ques = e.target.value;
+    const options = e.target.value;
+    //     const updatedValues = { ...values };
+    //     (updatedValues as any)[key] = e.value;
 
-  //     setValues(updatedValues);
-  //   };
-
-  //   console.log("object", values);
+    //     setValues(updatedValues);
+    console.log("object", values, ques, options);
+  };
 
   const navigate = useNavigate();
   const togglePopup = () => {
     navigate("/dashboard");
   };
 
-  const submitPollHandle = async (formSubmitEvent: any) => {
-    // You can access the updated values here
-    console.log("Question:", values.question);
-    console.log("Options:", values.options);
-
-    // ... (the rest of your code)
-  };
-  //   const submitPollHandle = async (formSubmitEvent: any) => {
-  //     formSubmitEvent.preventDefault();
-  //     const value = {
-  //       username: formSubmitEvent.target.elements.userName.value,
-  //       password: formSubmitEvent.target.elements.password.value,
-  //     };
-  //     try {
-  //       const response = await axios.post(
-  //         "http://localhost:8000/api/polls/create",
-  //         value
-  //       );
-  //       console.log("value", response.data);
-  //     } catch (error) {
-  //       console.error("Error", error);
-  //     }
-  //     console.log("ghjghjdb", values);
+  //   const submitPollHandle = async (e: any) => {
+  //     console.log("Question:", values.question);
+  //     console.log("Options:", values.options);
   //   };
+  const submitPollHandle = (e: any) => {
+    //     // e.preventDefault();
+    //     const ques = e.target.value;
+    //     const options = e.target.value;
+    //     // const values = {
+    //     //   question: e.target.elements.question.value,
+    //     //   options: e.target.elements.options.value,
+    //     // };
+    //     // try {
+    //     //   const response = await axios.post(
+    //     //     "http://localhost:8000/api/polls/create",
+    //     //     values
+    //     //   );
+    //     //   console.log("value", response.data);
+    //     // } catch (error) {
+    //     //   console.error("Error", error);
+    //     // }
+    console.log("ghjghjdb");
+  };
   return (
     <div className="App">
       <Popup
@@ -101,7 +64,7 @@ const Createpoll = () => {
               <span>Enter Question</span>
               <TextBox
                 value={values.question}
-                // onValueChange={(e) => onValueChange(e, "question")}
+                onValueChanged={onValueChanged}
               />
             </div>
             <div className="text-area">
@@ -111,10 +74,7 @@ const Createpoll = () => {
                   <TextBox
                     key={index}
                     value={option}
-                    // onValueChange={(e) =>
-                    //   onValueChange(e, "options[" + index + "]")
-                    // }
-                    // onValueChange={(e) => onValueChange(e, `options[${index}]`)}
+                    onValueChanged={onValueChanged}
                   />
                 ))}
               </div>
