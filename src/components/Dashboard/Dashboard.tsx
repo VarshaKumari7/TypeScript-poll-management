@@ -15,6 +15,7 @@ const Dashboard = () => {
   };
   const navigate = useNavigate();
   const cookies = new Cookies();
+
   // useEffect(() => {
   //   axios
   //     .get("http://localhost:8000/api/polls/user", {

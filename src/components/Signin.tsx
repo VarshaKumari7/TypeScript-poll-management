@@ -1,4 +1,4 @@
-import { Button, Toast } from "devextreme-react";
+import { Button, LoadPanel, Toast } from "devextreme-react";
 import Form from "devextreme-react/form";
 import { useEffect, useState } from "react";
 import "./signup.scss";
@@ -47,9 +47,30 @@ function Signin() {
       2000
     );
   };
+  const [state, setState] = useState({
+    loadPanelVisible: false,
+    // showIndicator: true,
+    // shading: true,
+    // showPane: true,
+    // hideOnOutsideClick: false,
+  });
+
+  const toggleLoadPanel = (visible: boolean) => {
+    setState({
+      loadPanelVisible: true,
+    });
+    if (visible) {
+      setTimeout(() => {
+        setState({
+          loadPanelVisible: false,
+        });
+      }, 2000);
+    }
+  };
 
   const loginHandler = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
+    toggleLoadPanel(true);
     const inputData = {
       username: formSubmitEvent.target.elements.userName.value,
       password: formSubmitEvent.target.elements.password.value,
@@ -89,6 +110,17 @@ function Signin() {
           ></Form>
           <Button useSubmitBehavior text="Submit" className="submit-btn" />
         </form>
+        <LoadPanel
+          shadingColor="rgba(0,0,0,0.4)"
+          // position={position}
+          // onHiding={hideLoadPanel}
+          visible={state.loadPanelVisible}
+
+          // showIndicator={showIndicator}
+          // shading={shading}
+          // showPane={showPane}
+          // hideOnOutsideClick={hideOnOutsideClick}
+        />
       </div>
       <div>
         <a href="/signup">Don't have account? Signup </a>
