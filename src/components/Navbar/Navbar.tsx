@@ -9,6 +9,7 @@ const Navbar = () => {
       .get("http://localhost:8000/api/polls")
       .then((res) => setPollData(res.data))
       .catch(Error);
+    // console.log("navbar", pollData[0]);
   }, []);
   return (
     <nav className="headings">

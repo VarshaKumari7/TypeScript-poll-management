@@ -6,10 +6,11 @@
     font-size: 1.4rem;
     justify-content: space-around;
     align-items: center;
+
+    .logo-details {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
 }
 
-.logo-details{
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}

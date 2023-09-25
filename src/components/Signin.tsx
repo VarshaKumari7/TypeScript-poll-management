@@ -1,12 +1,13 @@
-import { Button } from "devextreme-react";
+import { Button, Toast } from "devextreme-react";
 import Form from "devextreme-react/form";
 import { useEffect, useState } from "react";
 import "./signup.scss";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import notify from "devextreme/ui/notify";
 
-function Signup() {
+function Signin() {
   const [InputData, setInputData] = useState<any>({
     userName: "",
     password: "",
@@ -14,6 +15,38 @@ function Signup() {
   console.log("InputData", InputData);
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+  const types = ["error", "success"];
+  const successMessage = () => {
+    notify(
+      {
+        message: "Login Successfully",
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[1],
+      2000
+    );
+  };
+  const errorMessage = () => {
+    notify(
+      {
+        message: "Invalid username and password",
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[0],
+      2000
+    );
+  };
 
   const loginHandler = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
@@ -30,19 +63,13 @@ function Signup() {
       cookies.set("accessToken", response.data.token, { path: "/" });
 
       cookies.set("userId", response.data._id, { path: "/" });
+      successMessage();
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error", error);
+      errorMessage();
     }
   };
-
-  const isAuthenticated = !!cookies.get("accessToken");
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    } else {
-      navigate("/signin");
-    }
-  }, [isAuthenticated, navigate]);
 
   return (
     <div id="form-demo">
@@ -60,9 +87,8 @@ function Signup() {
             colCount={2}
             width={500}
           ></Form>
-          <Button useSubmitBehavior text="submit" />
+          <Button useSubmitBehavior text="Submit" className="submit-btn" />
         </form>
-        {/* )} */}
       </div>
       <div>
         <a href="/signup">Don't have account? Signup </a>
@@ -71,4 +97,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Signin;

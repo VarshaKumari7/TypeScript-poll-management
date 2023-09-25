@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "devextreme-react";
 
 const VoteList = ({ voteData }: any) => {
-  console.log(voteData, "voteData");
+  // console.log(voteData, "voteData");
 
   return (
     <>
@@ -19,7 +19,7 @@ const VoteList = ({ voteData }: any) => {
 };
 
 const Vote = ({ voteDetails }: any) => {
-  console.log(voteDetails, "voteDetails");
+  // console.log(voteDetails, "voteDetails");
 
   const pollDeleteHandler = async () => {
     try {
@@ -81,12 +81,12 @@ const Vote = ({ voteDetails }: any) => {
 };
 
 const VoteFor = ({ options, voteDetails }: any) => {
-  console.log(`Option: ${options.option}`);
-  console.log("User ID:", voteDetails.user);
-  console.log("Voted Array:", voteDetails.voted);
+  // console.log(`Option: ${options.option}`);
+  // console.log("User ID:", voteDetails.user);
+  // console.log("Voted Array:", voteDetails.voted);
 
   const onClickVoteHandler = (e: any) => {
-    console.log("Voted for", options._id, options.option, voteDetails._id);
+    // console.log("Voted for", options._id, options.option, voteDetails._id);
     e.preventDefault();
     axios
       .post(

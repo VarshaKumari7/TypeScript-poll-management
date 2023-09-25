@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Popup, TextBox, Button } from "devextreme-react";
 import "../Createpoll/createpoll.scss";
 import { useNavigate } from "react-router-dom";
+import notify from "devextreme/ui/notify";
 
 import axios from "axios";
 
@@ -25,7 +26,22 @@ const Createpoll = () => {
   const togglePopup = () => {
     navigate("/dashboard");
   };
-
+  const types = ["success"];
+  const successMessage = () => {
+    notify(
+      {
+        message: "Poll Created Successfully",
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[0],
+      2000
+    );
+  };
   const submitPollHandle = async (e: any) => {
     const values = {
       question: question,
@@ -43,6 +59,8 @@ const Createpoll = () => {
           },
         }
       );
+      successMessage();
+      navigate("/dashboard");
       console.log("value%%%%%%%", response);
     } catch (error) {
       console.error("Error", error);
