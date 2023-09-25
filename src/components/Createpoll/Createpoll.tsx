@@ -3,13 +3,14 @@ import { Popup, TextBox, Button } from "devextreme-react";
 import "../Createpoll/createpoll.scss";
 import { useNavigate } from "react-router-dom";
 import notify from "devextreme/ui/notify";
+import Cookies from "universal-cookie";
 
 import axios from "axios";
 
 const Createpoll = () => {
   const [question, setQuestion] = useState<string>("");
   const [options, setOptions] = useState<any>(["", "", "", "", ""]);
-
+  const cookies = new Cookies();
   const onQuestionChange = (e: any) => {
     setQuestion(e);
     console.log("onQuestionChange", e);
@@ -47,15 +48,17 @@ const Createpoll = () => {
       question: question,
       options: options,
     };
-    console.log("Question:", question);
-    console.log("Options:", options);
+    // console.log("Question:", question);
+    // console.log("Options:", options);
+    const authenticatedToken = cookies.get("accessToken");
     try {
       const response = await axios.post(
         "http://localhost:8000/api/polls/create",
         values,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4MTgzOWMwZmExMDcwOTBmY2MzYzIiLCJ1c2VybmFtZSI6ImFiY2RlZiIsImlhdCI6MTY5NTEyMjI5OH0.mkJr7cnBir5yhyttNUUsJqO_e8ECuU9Rc-PMGNCTupg`,
+            // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4MTgzOWMwZmExMDcwOTBmY2MzYzIiLCJ1c2VybmFtZSI6ImFiY2RlZiIsImlhdCI6MTY5NTEyMjI5OH0.mkJr7cnBir5yhyttNUUsJqO_e8ECuU9Rc-PMGNCTupg`,
+            Authorization: `Bearer ${authenticatedToken}`,
           },
         }
       );

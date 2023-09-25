@@ -52,21 +52,21 @@ function Signup() {
       2000
     );
   };
-  // const errorMessage = () => {
-  //   notify(
-  //     {
-  //       message: "",
-  //       width: 230,
-  //       position: {
-  //         at: "top",
-  //         my: "top",
-  //         of: "#container",
-  //       },
-  //     },
-  //     types[0],
-  //     2000
-  //   );
-  // };
+  const errorMessage = () => {
+    notify(
+      {
+        message: "Username is already taken",
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[0],
+      3000
+    );
+  };
   const handleFormSubmit = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
     const inputData = {
@@ -80,12 +80,15 @@ function Signup() {
       );
       console.log("Registered", response.data);
       successMessage();
+      navigate("/signin");
     } catch (error) {
       console.error("Error", error);
+      errorMessage();
+      setInputData({ userName: "", password: "" });
     }
-    setInputData({});
-    navigate("/signin");
-    console.log("ghjghjdb", InputData);
+
+    // navigate("/signin");
+    // console.log("ghjghjdb", InputData);
   };
 
   //   const handleFormSubmit = (e: React.FormEvent) => {
