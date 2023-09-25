@@ -3,16 +3,16 @@ import Form from "devextreme-react/form";
 import { useState } from "react";
 import "./signup.scss";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import notify from "devextreme/ui/notify";
 
 function Signup() {
   const [InputData, setInputData] = useState<any>({
-    // ID: 1,
     userName: "",
     password: "",
   });
-  console.log("InputData", InputData);
-
+  // console.log("InputData", InputData);
+  const navigate = useNavigate();
   //   const [userName, setUserName] = useState<string>("");
 
   //   const userNameChangeHandler = (e: NativeEventInfo<any | Event>) => {
@@ -36,6 +36,37 @@ function Signup() {
   //     console.log("InputData after filling", InputData, name, value);
   //   };
 
+  const types = ["error", "success"];
+  const successMessage = () => {
+    notify(
+      {
+        message: "Register Successfully",
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[1],
+      2000
+    );
+  };
+  // const errorMessage = () => {
+  //   notify(
+  //     {
+  //       message: "",
+  //       width: 230,
+  //       position: {
+  //         at: "top",
+  //         my: "top",
+  //         of: "#container",
+  //       },
+  //     },
+  //     types[0],
+  //     2000
+  //   );
+  // };
   const handleFormSubmit = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
     const inputData = {
@@ -48,9 +79,12 @@ function Signup() {
         inputData
       );
       console.log("Registered", response.data);
+      successMessage();
     } catch (error) {
       console.error("Error", error);
     }
+    setInputData({});
+    navigate("/signin");
     console.log("ghjghjdb", InputData);
   };
 
@@ -80,10 +114,11 @@ function Signup() {
   console.log("working");
 
   return (
-    <div id="form-demo">
-      <h1>Hello World</h1>
+    <div id="form-demo" className="form-demo">
+      <h1>Register form</h1>
       <div className="widget-container">
         <form
+          className="form-text"
           onSubmit={handleFormSubmit}
           //   onSubmit={(e) => {
           //     handleFormSubmit(e);
@@ -123,7 +158,7 @@ function Signup() {
             <TextBox onChange={userNameChangeHandler} />
           </div> */}
           </Form>
-          <Button useSubmitBehavior text="submit" />
+          <Button useSubmitBehavior text="Submit" className="submit-btn" />
         </form>
       </div>
       <div>

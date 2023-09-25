@@ -1,0 +1,16 @@
+.headings{
+    background-color: #0559a2;
+    color: white;
+    display: flex;
+    height: 6vh;
+    font-size: 1.4rem;
+    justify-content: space-around;
+    align-items: center;
+
+    .logo-details {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+}
+
