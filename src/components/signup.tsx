@@ -114,10 +114,11 @@ function Signup() {
   console.log("working");
 
   return (
-    <div id="form-demo">
+    <div id="form-demo" className="form-demo">
       <h1>Register form</h1>
       <div className="widget-container">
         <form
+          className="form-text"
           onSubmit={handleFormSubmit}
           //   onSubmit={(e) => {
           //     handleFormSubmit(e);

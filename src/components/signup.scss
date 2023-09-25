@@ -1,96 +1,120 @@
-// *{
-//     background-color: red;
-// }
-.widget-container {
-    margin-right: 320px;
-    padding: 20px;
-    max-width: 550px;
-    min-width: 300px;
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
+.form-demo{
+display: flex !important;
+    flex-direction: column;
+    align-items: center;
+
+   
+.widget-container {
+    // margin-right: 320px;
+    padding: 20px;
+    width: 100%;
+    // max-width: 550px;
+    // min-width: 300px;
+
+    .form-text {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #form {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .options {
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 260px;
+            top: 0;
+            background-color: rgba(191, 191, 191, 0.15);
+        }
+    
+        .caption {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    
+        .option {
+            margin-top: 10px;
+        }
+    
+
+    
+        .container {
+            // width: 500px;
+            border: 1px solid lightblue;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgb(76, 161, 236);
+        }
+    
+        .content-box {
+            background-color: aliceblue;
+            max-width: 380px;
+            width: 100%;
+            padding: 25px;
+            border-radius: 15px;
+    
+        }
+    
+        .row {
+            display: block;
+            margin-bottom: 5px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #e6e6e6;
+        }
+    
+        .row-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+    
+        // dx-item-content dx-box-item-content dx-box-flex dx-box dx-widget dx-collection
+        .dx-item-content {
+            flex-direction: column !important;
+        }
+    
+        .submit-btn {
+            background-color: rgb(58, 58, 240);
+            color: white;
+            padding: 3px 8px;
+            font-size: 1.5rem;
+            margin: 15px 5px;
+        }
+
+                .dx-layout-manager .dx-field-item:not(.dx-last-col) {
+                    padding-right: 1px;
+                }
+                .dx-layout-manager .dx-field-item:not(.dx-first-col) {
+                    padding-left: 1px;
+                }
+}
+}
+
+@media only screen and (max-width: 500px) {
 
 #form {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-}
+        width: 100% !important;
+    }
 
-// form{
 
-// }
-#form-demo{
-    display: flex !important; 
-    flex-direction: column;
-    align-items: center;
-}
-.options {
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 260px;
-    top: 0;
-    background-color: rgba(191, 191, 191, 0.15);
-}
-
-.caption {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.option {
-    margin-top: 10px;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.container{
-    // width: 500px;
-        border: 1px solid lightblue;
-        border-radius: 3px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: rgb(76, 161, 236);
-}
-
-.content-box{
-    background-color: aliceblue;
-    max-width: 380px;
-    width: 100%;
-    padding: 25px;
-    border-radius: 15px;
-    
-}
-
-.row{
-    display: block;
-    margin-bottom: 5px;
-    padding : 8px 15px;
-    border-radius: 5px;
-    border: 1px solid #e6e6e6;
-}
-
-.row-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-}
-
-// dx-item-content dx-box-item-content dx-box-flex dx-box dx-widget dx-collection
-.dx-item-content {
-    flex-direction: column;
-}
-
-.submit-btn{
-    background-color: rgb(58, 58, 240);
-    color: white;
-    padding: 3px 8px;
-    font-size: 1.5rem;
-    margin: 15px 5px;
-}
+    // * {
+    //     background-color: rgb(237, 7, 34);
+    // }
 }

@@ -93,10 +93,10 @@ function Signin() {
   };
 
   return (
-    <div id="form-demo">
-      <h1>Login page</h1>
+    <div id="form-demo" className="form-demo">
+      <h1 className="login-text">Login page</h1>
       <div className="widget-container">
-        <form onSubmit={loginHandler}>
+        <form className="form-text" onSubmit={loginHandler}>
           <Form
             id="form"
             labelMode={"floating"}
