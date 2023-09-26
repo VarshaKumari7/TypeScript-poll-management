@@ -5,12 +5,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import VoteList from "../Vote/Vote";
 import Cookies from "universal-cookie";
-import notify from "devextreme/ui/notify";
 
 const Dashboard = () => {
   const [pollData, setPollData] = useState<any>([]);
   const [error, setError] = useState("");
-
+  const [update, setUpdate] = useState<boolean>(false);
   const togglePopup = () => {
     navigate("/createpoll");
   };
@@ -48,20 +47,14 @@ const Dashboard = () => {
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+  }, [update]);
 
-  // console.log("userrrrrrr###", pollData);
-
-  // const onClickHandler = () => {
-  //   navigate("/signup");
-  //   console.log("=====");
+  // const logoutHandler = () => {
+  //   cookies.remove("accessToken");
+  //   cookies.remove("userId");
+  //   cookies.remove("userName");
+  //   navigate("/signin");
   // };
-
-  const logoutHandler = () => {
-    cookies.remove("accessToken");
-    cookies.remove("userId");
-    navigate("/signin");
-  };
   useEffect(() => {
     const authenticatedToken = cookies.get("accessToken");
     // console.log("isAuthenticated", authenticatedToken);
@@ -75,18 +68,12 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="vote-section">
-        <VoteList voteData={pollData} />
+        <VoteList voteData={pollData} setUpdate={setUpdate} />
       </div>
       <div className="welcome-section">
         <div>Welcome to Polling App</div>
-        {/* <small>Create account to upload Polls and Votes</small> */}
-        {/* <Button
-          text="Create Account"
-          className="bttn"
-          onClick={onClickHandler}
-        /> */}
         <Button text="Create Poll" onClick={togglePopup} className="poll" />
-        <Button text="Log Out" onClick={logoutHandler} className="poll" />
+        {/* <Button text="Log Out" onClick={logoutHandler} className="poll" /> */}
       </div>
     </div>
   );

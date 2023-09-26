@@ -1,5 +1,5 @@
 import { Button, LoadPanel, Toast } from "devextreme-react";
-import Form from "devextreme-react/form";
+import Form, { SimpleItem } from "devextreme-react/form";
 import { useEffect, useState } from "react";
 import "./signup.scss";
 import axios from "axios";
@@ -7,11 +7,12 @@ import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import notify from "devextreme/ui/notify";
 
-function Signin() {
+function Signin({ handleSignIn }: any) {
   const [InputData, setInputData] = useState<any>({
     userName: "",
     password: "",
   });
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   console.log("InputData", InputData);
   const cookies = new Cookies();
   const navigate = useNavigate();
@@ -32,10 +33,10 @@ function Signin() {
       2000
     );
   };
-  const errorMessage = () => {
+  const errorMessage = (error: any) => {
     notify(
       {
-        message: "Invalid username and password",
+        message: error.response.data,
         width: 230,
         position: {
           at: "top",
@@ -80,17 +81,26 @@ function Signin() {
         "http://localhost:8000/api/auth/login",
         inputData
       );
-      console.log("log In", response.data);
+      console.log("log In", response);
       cookies.set("accessToken", response.data.token, { path: "/" });
-
       cookies.set("userId", response.data._id, { path: "/" });
+      cookies.set("userName", response.data.username, { path: "/" });
       successMessage();
-      navigate("/dashboard");
+      handleSignIn(response.data.username);
+      setIsLoggedIn(true);
+      // navigate("/dashboard");
+      // window.location.reload();
     } catch (error) {
       console.error("Error", error);
-      errorMessage();
+      errorMessage(error);
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn]);
 
   return (
     <div id="form-demo" className="form-demo">
@@ -107,7 +117,20 @@ function Signin() {
             minColWidth={300}
             colCount={2}
             width={500}
-          ></Form>
+          >
+            <SimpleItem
+              dataField="userName"
+              editorType="dxTextBox"
+              editorOptions={{ mode: "text" }}
+              label={{ text: "Username" }}
+            />
+            <SimpleItem
+              dataField="password"
+              editorType="dxTextBox"
+              editorOptions={{ mode: "password" }}
+              label={{ text: "Password" }}
+            />
+          </Form>
           <Button useSubmitBehavior text="Submit" className="submit-btn" />
         </form>
         <LoadPanel

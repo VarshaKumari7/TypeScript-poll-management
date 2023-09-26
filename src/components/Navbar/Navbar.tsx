@@ -1,22 +1,48 @@
 import { useEffect, useState } from "react";
 import "./nav.scss";
 import { FaUserCircle } from "react-icons/fa";
-import axios from "axios";
-const Navbar = () => {
-  const [pollData, setPollData] = useState<any>([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/polls")
-      .then((res) => setPollData(res.data))
-      .catch(Error);
-    // console.log("navbar", pollData[0]);
-  }, []);
+import Cookies from "universal-cookie";
+import { Button } from "devextreme-react";
+import { useNavigate } from "react-router-dom";
+const Navbar = ({ userName }: any) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  ////////////////LogOut//////////////////////////////////////////
+  const toggleLogutButtton = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  const navigate = useNavigate();
+  const cookies = new Cookies();
+  const logoutHandler = () => {
+    cookies.remove("accessToken");
+    cookies.remove("userId");
+    cookies.remove("userName");
+    navigate("/signin");
+  };
+  ///////////////////////////////////////////
+
   return (
     <nav className="headings">
       <div>Pooling App</div>
       <div className="logo-details">
-        <FaUserCircle />
-        {pollData[0]?.user?.username}
+        <FaUserCircle
+          onClick={toggleLogutButtton}
+          style={{ cursor: "pointer" }}
+        />{" "}
+        {userName && (
+          <>
+            {isDropdownOpen && (
+              <div style={{ backgroundColor: "red", border: "2px solid red" }}>
+                <Button
+                  text="Logout"
+                  className="btn-cls"
+                  onClick={logoutHandler}
+                />
+              </div>
+            )}
+          </>
+        )}
+        {userName}
       </div>
     </nav>
   );

@@ -6,11 +6,13 @@
 .vote-box{
     border:  1px solid black;
     padding: 17px;
+    margin-top: 4px;
 
     .vote-details {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 32px;
         }
     
         .question-section {
