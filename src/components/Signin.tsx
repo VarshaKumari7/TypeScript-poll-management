@@ -86,7 +86,7 @@ function Signin({ handleSignIn }: any) {
       cookies.set("userId", response.data._id, { path: "/" });
       cookies.set("userName", response.data.username, { path: "/" });
       successMessage();
-      handleSignIn(response.data.username);
+      handleSignIn();
       setIsLoggedIn(true);
       // navigate("/dashboard");
       // window.location.reload();

@@ -4,9 +4,12 @@ import { FaUserCircle } from "react-icons/fa";
 import Cookies from "universal-cookie";
 import { Button } from "devextreme-react";
 import { useNavigate } from "react-router-dom";
-const Navbar = ({ userName }: any) => {
+const Navbar = ({ userName, setUserName }: any) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-
+  // const [user, setUser] = useState<any>("");
+  // if (userName) {
+  //   setUser(userName);
+  // }
   ////////////////LogOut//////////////////////////////////////////
   const toggleLogutButtton = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -17,9 +20,12 @@ const Navbar = ({ userName }: any) => {
     cookies.remove("accessToken");
     cookies.remove("userId");
     cookies.remove("userName");
+    setUserName("");
     navigate("/signin");
   };
   ///////////////////////////////////////////
+
+  useEffect(() => {});
 
   return (
     <nav className="headings">

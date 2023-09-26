@@ -6,7 +6,7 @@ import axios from "axios";
 import VoteList from "../Vote/Vote";
 import Cookies from "universal-cookie";
 
-const Dashboard = () => {
+const Dashboard = ({ handleSignIn }: any) => {
   const [pollData, setPollData] = useState<any>([]);
   const [error, setError] = useState("");
   const [update, setUpdate] = useState<boolean>(false);
@@ -60,6 +60,7 @@ const Dashboard = () => {
     // console.log("isAuthenticated", authenticatedToken);
     if (authenticatedToken) {
       navigate("/dashboard");
+      handleSignIn();
     } else {
       navigate("/signin");
     }
