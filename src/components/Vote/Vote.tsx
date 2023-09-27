@@ -45,7 +45,7 @@ const Vote = ({ voteDetails, setUpdate }: any) => {
   const errorMessagePollDelete = (error: any) => {
     notify(
       {
-        message: error.response.data,
+        message: error.response.data.message,
         width: 230,
         position: {
           at: "top",
@@ -77,7 +77,7 @@ const Vote = ({ voteDetails, setUpdate }: any) => {
     console.log(error.data, error.response, "$$$$$$$$$4");
     notify(
       {
-        message: error.response.data,
+        message: error.response.data.message,
         width: 230,
         position: {
           at: "top",
@@ -105,7 +105,7 @@ const Vote = ({ voteDetails, setUpdate }: any) => {
       );
       successMessagePollDelete();
       setUpdate((prev: any) => !prev);
-      console.log(response);
+      console.log(response, "detetetetete");
     } catch (error) {
       console.log(error);
       errorMessagePollDelete(error);
