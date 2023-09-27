@@ -1,5 +1,5 @@
 import { Button } from "devextreme-react";
-import Form from "devextreme-react/form";
+import Form, { SimpleItem } from "devextreme-react/form";
 import { useState } from "react";
 import "./signup.scss";
 import axios from "axios";
@@ -52,21 +52,21 @@ function Signup() {
       2000
     );
   };
-  // const errorMessage = () => {
-  //   notify(
-  //     {
-  //       message: "",
-  //       width: 230,
-  //       position: {
-  //         at: "top",
-  //         my: "top",
-  //         of: "#container",
-  //       },
-  //     },
-  //     types[0],
-  //     2000
-  //   );
-  // };
+  const errorMessage = (error: any) => {
+    notify(
+      {
+        message: error.response.data,
+        width: 230,
+        position: {
+          at: "top",
+          my: "top",
+          of: "#container",
+        },
+      },
+      types[0],
+      3000
+    );
+  };
   const handleFormSubmit = async (formSubmitEvent: any) => {
     formSubmitEvent.preventDefault();
     const inputData = {
@@ -80,12 +80,16 @@ function Signup() {
       );
       console.log("Registered", response.data);
       successMessage();
+
+      navigate("/signin");
     } catch (error) {
       console.error("Error", error);
+      errorMessage(error);
+      setInputData({ userName: "", password: "" });
     }
-    setInputData({});
-    navigate("/signin");
-    console.log("ghjghjdb", InputData);
+
+    // navigate("/signin");
+    // console.log("ghjghjdb", InputData);
   };
 
   //   const handleFormSubmit = (e: React.FormEvent) => {
@@ -136,27 +140,19 @@ function Signup() {
             colCount={2}
             width={500}
           >
-            {/* <div className="option">
-              <TextBox
-                name="userName"
-                value={InputData.userName}
-                onValueChange={handleInputChange}
-              />
-            </div>
-            <div className="option">
-              <TextBox
-                name="password"
-                value={InputData.password}
-                onValueChanged={handleInputChange}
-                mode="password"
-              />
-            </div> */}
-            {/* <div className="option">
-            <TextBox onChange={userNameChangeHandler} />
-          </div>
-          <div className="option">
-            <TextBox onChange={userNameChangeHandler} />
-          </div> */}
+            <SimpleItem
+              dataField="userName"
+              editorType="dxTextBox"
+              editorOptions={{ mode: "text" }}
+              label={{ text: "Username" }}
+              isRequired
+            />
+            <SimpleItem
+              dataField="password"
+              editorType="dxTextBox"
+              editorOptions={{ mode: "password" }}
+              label={{ text: "Password" }}
+            />
           </Form>
           <Button useSubmitBehavior text="Submit" className="submit-btn" />
         </form>
